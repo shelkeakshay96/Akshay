@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="customer_import" xsi:type="object">Wm\Import\Console\CustomerImport</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <preference for="Wm\Import\Api\ImporterInterface" type="Wm\Import\Model\Importer"/>
+    <preference for="Wm\Import\Api\ReaderInterface" type="Wm\Import\Model\Importer\Reader"/>
+    <preference for="Wm\Import\Api\MapperInterface" type="Wm\Import\Model\Importer\Mapper"/>
+
+    <type name="Wm\Import\Console\CustomerImport">
+        <arguments>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="csv" xsi:type="string">csv</item>
+                <item name="json" xsi:type="string">json</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Wm\Import\Model\Importer\Reader" >
+        <arguments>
+            <argument name="allowedProfiles" xsi:type="array">
+                <item name="sample-csv" xsi:type="object">Wm\Import\Model\Importer\Reader\ReadCsv</item>
+                <item name="sample-json" xsi:type="object">Wm\Import\Model\Importer\Reader\ReadJson</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Wm\Import\Model\Importer">
+        <arguments>
+            <argument name="mapper" xsi:type="object">Wm\Import\Model\Importer\DataMapper</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Wm\Import\Model\Importer\DataMapper" type="Wm\Import\Model\Importer\Mapper">
+        <arguments>
+            <argument name="mappings" xsi:type="array">
+                <item name="firstname" xsi:type="string">fname</item>
+                <item name="lastname" xsi:type="string">lname</item>
+                <item name="email" xsi:type="string">emailaddress</item>
+                <item name="website_id" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+                <item name="group_id" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>
