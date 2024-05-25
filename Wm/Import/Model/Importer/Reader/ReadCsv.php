@@ -3,6 +3,14 @@
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
+ *
+ * PHP Version 8.2
+ *
+ * @category Console
+ * @package  Wm\Import\Model\Importer\Reader
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 
 declare(strict_types=1);
@@ -16,7 +24,11 @@ use Magento\Framework\Filesystem\Directory\ReadFactory;
 /**
  * Read CSV data
  *
- * @author Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @category Console
+ * @package  Wm\Import\Model\Importer\Reader
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 class ReadCsv implements ReaderInterface
 {
@@ -37,8 +49,8 @@ class ReadCsv implements ReaderInterface
     /**
      * Constructor
      *
-     * @param DirectoryList $dir
-     * @param ReadFactory   $directoryReadFactory
+     * @param DirectoryList $dir                  Parameter
+     * @param ReadFactory   $directoryReadFactory Parameter
      */
     public function __construct(
         DirectoryList $dir,
@@ -51,8 +63,8 @@ class ReadCsv implements ReaderInterface
     /**
      * Read CSV
      *
-     * @param string $filename
-     * @param string $profile
+     * @param string $filename Parameter
+     * @param string $profile  Parameter
      *
      * @return array
      */
@@ -85,11 +97,11 @@ class ReadCsv implements ReaderInterface
     /**
      * Get Header value
      *
-     * @param array $row
+     * @param array $row Parameter
      *
      * @return array
      */
-    private function getHeader($row)
+    protected function getHeader($row)
     {
         $header = [];
         foreach ($row as $key => $value) {

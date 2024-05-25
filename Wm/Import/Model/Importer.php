@@ -3,6 +3,14 @@
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
+ *
+ * PHP Version 8.2
+ *
+ * @category Console
+ * @package  Wm\Import\Model
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 
 declare(strict_types=1);
@@ -20,31 +28,45 @@ use Magento\Framework\Exception\AlreadyExistsException;
 /**
  * Importer Class to import customers
  *
- * @author Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @category Console
+ * @package  Wm\Import\Model
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 class Importer implements ImporterInterface
 {
     /**
+     * Logger Interface
+     *
      * @var LoggerInterface
      */
     protected $logger;
 
     /**
+     * Reader Interface
+     *
      * @var ReaderInterface
      */
     protected $reader;
 
     /**
+     * Mapper Interface
+     *
      * @var MapperInterface
      */
     protected $mapper;
 
     /**
+     * Customer Repository
+     *
      * @var CustomerRepository
      */
     protected $customerRepository;
 
     /**
+     * Customer Helper
+     *
      * @var Helper
      */
     protected $helper;
@@ -52,11 +74,11 @@ class Importer implements ImporterInterface
     /**
      * Importer Constructor
      *
-     * @param LoggerInterface    $logger
-     * @param ReaderInterface    $reader
-     * @param MapperInterface    $mapper
-     * @param CustomerRepository $customerRepository
-     * @param Helper             $helper
+     * @param LoggerInterface    $logger             Parameter
+     * @param ReaderInterface    $reader             Parameter
+     * @param MapperInterface    $mapper             Parameter
+     * @param CustomerRepository $customerRepository Parameter
+     * @param Helper             $helper             Parameter
      *
      * @return void
      */
@@ -77,8 +99,8 @@ class Importer implements ImporterInterface
     /**
      * Execute method
      *
-     * @param string $filename
-     * @param string $profile
+     * @param string $filename Parameter
+     * @param string $profile  Parameter
      *
      * @return void
      */
@@ -137,11 +159,11 @@ class Importer implements ImporterInterface
     /**
      * Create customer
      *
-     * @param array $data
+     * @param array $data Parameter
      *
      * @return \Magento\Customer\Api\Data\CustomerInterface;
      */
-    private function createCustomer($data)
+    protected function createCustomer($data)
     {
         $customer = $this->helper->createCustomerToSave($data);
 

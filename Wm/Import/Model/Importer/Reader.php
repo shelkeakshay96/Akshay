@@ -3,6 +3,14 @@
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
+ *
+ * PHP Version 8.2
+ *
+ * @category Console
+ * @package  Wm\Import\Model\Importer
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 
 declare(strict_types=1);
@@ -14,11 +22,17 @@ use Wm\Import\Api\ReaderInterface;
 /**
  * Read class from the source
  *
- * @author Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @category Console
+ * @package  Wm\Import\Model\Importer
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 class Reader implements ReaderInterface
 {
     /**
+     * Array Allowed Profiles
+     *
      * @var array
      */
     protected $allowedProfiles;
@@ -26,7 +40,7 @@ class Reader implements ReaderInterface
     /**
      * Constructor
      *
-     * @param array $allowedProfiles
+     * @param array $allowedProfiles Parameter
      *
      * @return void
      */
@@ -39,8 +53,8 @@ class Reader implements ReaderInterface
     /**
      * Read method
      *
-     * @param string $filename
-     * @param string $profile
+     * @param string $filename Parameter
+     * @param string $profile  Parameter
      *
      * @return array
      */

@@ -2,7 +2,15 @@
 
 /**
  * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * See COPYING.txt for license details. *
+ *
+ * PHP Version 8.2
+ *
+ * @category Console
+ * @package  Wm\Import\Console
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 
 declare(strict_types=1);
@@ -26,63 +34,83 @@ use Wm\Import\Api\ImporterInterface;
 /**
  * Console command to import customer
  *
- * @author Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @category Console
+ * @package  Wm\Import\Console
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 class CustomerImport extends Command
 {
     private const COMMAND_CUSTOMER_IMPORT = 'customer:import';
 
     /**
+     * Directory List
+     *
      * @var DirectoryList
      */
     protected $dir;
 
     /**
+     * File Obj
+     *
      * @var File
      */
     protected $file;
 
     /**
+     * Read Factory
+     *
      * @var ReadFactory
      */
     protected $directoryReadFactory;
 
     /**
+     * StoreManager Interface
+     *
      * @var StoreManagerInterface
      */
     protected $storeManager;
 
     /**
+     * Console Output
+     *
      * @var ConsoleOutput
      */
     protected $consoleOutput;
 
     /**
+     * Importer Interface
+     *
      * @var ImporterInterface
      */
     protected $importer;
 
     /**
+     * Io File
+     *
      * @var IoFile
      */
     protected $ioFile;
 
     /**
-     * @var array
+     * Allowed Extensions
+     *
+     * @var array array
      */
     public array $allowedExtensions;
 
     /**
      * Console command for import customers
      *
-     * @param DirectoryList         $dir
-     * @param File                  $file
-     * @param ReadFactory           $directoryReadFactory
-     * @param StoreManagerInterface $storeManager
-     * @param ImporterInterface     $importer
-     * @param ConsoleOutput         $consoleOutput
-     * @param IoFile                $ioFile
-     * @param array                 $allowedExtensions
+     * @param DirectoryList         $dir                  Parameter
+     * @param File                  $file                 Parameter
+     * @param ReadFactory           $directoryReadFactory Parameter
+     * @param StoreManagerInterface $storeManager         Parameter
+     * @param ImporterInterface     $importer             Parameter
+     * @param ConsoleOutput         $consoleOutput        Parameter
+     * @param IoFile                $ioFile               Parameter
+     * @param array                 $allowedExtensions    Parameter
      */
     public function __construct(
         DirectoryList $dir,
@@ -151,8 +179,8 @@ EOT
     /**
      * Export customer console line execution
      *
-     * @param InputInterface  $input
-     * @param OutputInterface $output
+     * @param InputInterface  $input  Parameter
+     * @param OutputInterface $output Parameter
      *
      * @return boolean
      * @throws LocalizedException
@@ -182,8 +210,8 @@ EOT
     /**
      * Validate parameters and path
      *
-     * @param string $profileName
-     * @param string $source
+     * @param string $profileName Parameter
+     * @param string $source      Parameter
      *
      * @return void
      */
@@ -199,7 +227,7 @@ EOT
 
         $path_info = $this->ioFile->getPathInfo($filename);
         $fileExtension = $path_info['extension'] ?? '';
-        if (!$extension || ($extension != $fileExtension) || (!in_array($extension, $this->allowedExtensions))) {
+        if (!$extension || ($extension != $fileExtension) || (!in_array($extension, $this->allowedExtensions))) { //phpcs:ignore
             throw new LocalizedException(__('Invalid profile(extension) name'));
         }
 

@@ -3,6 +3,14 @@
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
+ *
+ * PHP Version 8.2
+ *
+ * @category Console
+ * @package  Wm\Import\Model\Importer\Reader
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 
 declare(strict_types=1);
@@ -17,21 +25,31 @@ use Magento\Framework\Json\Helper\Data as JsonHelper;
 /**
  * Read JSON data
  *
- * @author Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @category Console
+ * @package  Wm\Import\Model\Importer\Reader
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 class ReadJson implements ReaderInterface
 {
     /**
+     * File system
+     *
      * @var Filesystem
      */
     protected $filesystem;
 
     /**
+     * Directory Read
+     *
      * @var Read;
      */
     protected $directory;
 
     /**
+     * Json Helper
+     *
      * @var JsonHelper;
      */
     protected $jsonHelper;
@@ -39,8 +57,8 @@ class ReadJson implements ReaderInterface
     /**
      * Constructor
      *
-     * @param Filesystem $filesystem
-     * @param JsonHelper $jsonHelper
+     * @param Filesystem $filesystem Parameter
+     * @param JsonHelper $jsonHelper Parameter
      */
     public function __construct(
         Filesystem $filesystem,
@@ -53,8 +71,8 @@ class ReadJson implements ReaderInterface
     /**
      * Read CSV
      *
-     * @param string $filename
-     * @param string $profile
+     * @param string $filename Parameter
+     * @param string $profile  Parameter
      *
      * @return array
      */

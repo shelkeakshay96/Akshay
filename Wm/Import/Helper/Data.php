@@ -3,6 +3,14 @@
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
+ *
+ * PHP Version 8.2
+ *
+ * @category Console
+ * @package  Wm\Import\Helper
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 
 declare(strict_types=1);
@@ -24,56 +32,74 @@ use Psr\Log\LoggerInterface;
 /**
  * Customer Import Helper
  *
- * @author Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @category Console
+ * @package  Wm\Import\Helper
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 class Data extends AbstractHelper
 {
     /**
+     * Store Manager Interface
+     *
      * @var StoreManagerInterface
      */
     protected $storeManager;
 
     /**
+     * Logger Interface
+     *
      * @var LoggerInterface
      */
     protected $logger;
 
     /**
+     * Scope Config Interface
+     *
      * @var ScopeConfigInterface
      */
     protected $scopeConfig;
 
     /**
+     * Data Object Helper
+     *
      * @var DataObjectHelper
      */
-    private $dataObjectHelper;
+    protected $dataObjectHelper;
 
     /**
+     * Customer Interface Factory
+     *
      * @var CustomerInterfaceFactory
      */
-    private $customerFactory;
+    protected $customerFactory;
 
     /**
+     * Validate Customer Data
+     *
      * @var ValidateCustomerData
      */
-    private $validateCustomerData;
+    protected $validateCustomerData;
 
     /**
+     * Data Object Processor
+     *
      * @var DataObjectProcessor
      */
-    private $dataObjectProcessor;
+    protected $dataObjectProcessor;
 
     /**
      * Contructor
      *
-     * @param Context                  $context
-     * @param StoreManagerInterface    $storeManager
-     * @param LoggerInterface          $logger
-     * @param DataObjectHelper         $dataObjectHelper
-     * @param CustomerInterfaceFactory $customerFactory
-     * @param DataObjectProcessor      $dataObjectProcessor
-     * @param ValidateCustomerData     $validateCustomerData
-     * @param ScopeConfigInterface     $scopeConfig
+     * @param Context                  $context              Parameter
+     * @param StoreManagerInterface    $storeManager         Parameter
+     * @param LoggerInterface          $logger               Parameter
+     * @param DataObjectHelper         $dataObjectHelper     Parameter
+     * @param CustomerInterfaceFactory $customerFactory      Parameter
+     * @param DataObjectProcessor      $dataObjectProcessor  Parameter
+     * @param ValidateCustomerData     $validateCustomerData Parameter
+     * @param ScopeConfigInterface     $scopeConfig          Parameter
      */
     public function __construct(
         Context $context,
@@ -98,7 +124,7 @@ class Data extends AbstractHelper
     /**
      * Get customer object
      *
-     * @param array $data
+     * @param array $data Parameter
      *
      * @return CustomerInterface
      * @throws LocalizedException
@@ -114,7 +140,7 @@ class Data extends AbstractHelper
             $customerDataObject,
             CustomerInterface::class
         );
-        $data                   = array_merge($requiredDataAttributes, $data);
+        $data = array_merge($requiredDataAttributes, $data);
         $this->validateCustomerData->execute($data);
         $this->dataObjectHelper->populateWithArray(
             $customerDataObject,

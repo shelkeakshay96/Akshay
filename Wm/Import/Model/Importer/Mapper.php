@@ -3,6 +3,14 @@
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
+ *
+ * PHP Version 8.2
+ *
+ * @category Console
+ * @package  Wm\Import\Model\Importer
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 
 declare(strict_types=1);
@@ -14,11 +22,17 @@ use Wm\Import\Api\MapperInterface;
 /**
  * Class mapper to map old and new columns
  *
- * @author Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @category Console
+ * @package  Wm\Import\Model\Importer
+ * @author   Akshay Shelke <myself.akshay.shelke@gmail.com>
+ * @license  http://fsf.org GNU
+ * @link     http://fsf.org
  */
 class Mapper implements MapperInterface
 {
     /**
+     * Array Mapping
+     *
      * @var array
      */
     protected $mappings;
@@ -26,7 +40,7 @@ class Mapper implements MapperInterface
     /**
      * DataMapper constructor.
      *
-     * @param array $mappings
+     * @param array $mappings Parameter
      */
     public function __construct(
         array $mappings = []
@@ -37,7 +51,7 @@ class Mapper implements MapperInterface
     /**
      * Set mapping
      *
-     * @param array $mappings
+     * @param array $mappings Parameter
      *
      * @return void
      */
@@ -49,7 +63,7 @@ class Mapper implements MapperInterface
     /**
      * Map method
      *
-     * @param array $data
+     * @param array $data Parameter
      *
      * @return void
      */

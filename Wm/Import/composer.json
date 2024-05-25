@@ -1,22 +1,26 @@
 {
   "name": "wm/module-import",
-  "version": "1.0.0",
   "description": "Import Customer",
   "type": "magento2-module",
-  "require": {
-    "magento/framework": "*",
-    "vendor/module-customer": "*"
-  },
-  "license": [
-    "OSL-3.0",
-    "AFL-3.0"
+  "license": "GPL-3.0",
+  "authors": [
+      {
+          "name": "Akshay Shelke",
+          "email": "myself.akshay.shelke@gmail.com"
+      }
   ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "~8.1.0||~8.2.0",
+    "magento/framework": "*",
+    "magento/module-customer": "103.0.*"
+  },
   "autoload": {
-    "files": [
-      "registration.php"
-    ],
-    "psr-4": {
-      "Wm\\Import\\": ""
-    }
+      "files": [
+          "registration.php"
+      ],
+      "psr-4": {
+          "Wm\\Import\\": ""
+      }
   }
 }
