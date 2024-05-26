@@ -81,7 +81,9 @@ class ReadJson implements ReaderInterface
         $data     = [];
         $driver = $this->directory->getDriver();
         $jsonData = $driver->fileGetContents($filename);
+        print_r($jsonData); die;
         $data = $this->jsonHelper->jsonDecode($jsonData);
+
 
         return $data;
     }
