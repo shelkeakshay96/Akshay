@@ -132,7 +132,7 @@ class CustomerImport extends Command
     protected function configure()
     {
         $this->setName(self::CONSOLE_COMMAND)
-            ->setDescription('import customers from a sample CSV or JSON: "php magento run:cron <profile-name> <source>"') //phpcs:ignore
+            ->setDescription('import customers from a sample CSV or JSON: "php magento run:cron <profile-name> <source>') //phpcs:ignore
             ->setDefinition(
                 [
                     new InputArgument(

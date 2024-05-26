@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details. *
@@ -40,14 +41,14 @@ class ImporterTest extends TestCase
      * @var CustomerFactory|MockObject
      */
     protected $customerFactory;
-    
+
     /**
      * Reader Interface
      *
      * @var ReaderInterface
      */
     protected $reader;
-    
+
     /**
      * Mapper Interface
      *
@@ -61,7 +62,7 @@ class ImporterTest extends TestCase
      * @var array
      */
     protected $data;
-    
+
     /**
      * Customer Helper
      *
@@ -71,13 +72,14 @@ class ImporterTest extends TestCase
 
     /**
      * Function Setup
-     * 
+     *
      * @return void
      */
     protected function setUp(): void
     {
         $this->customerFactory = $this->createPartialMock(
-            CustomerFactory::class, ['create']
+            CustomerFactory::class,
+            ['create']
         );
         $this->reader = $this->createMock(ReaderInterface::class);
         $this->mapper = $this->createMock(MapperInterface::class);
