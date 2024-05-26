@@ -26,7 +26,6 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Filesystem\DirectoryList;
 use Magento\Framework\Filesystem\Driver\File;
 use Magento\Framework\Filesystem\Directory\ReadFactory;
-use Magento\Store\Model\StoreManagerInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Magento\Framework\Filesystem\Io\File as IoFile;
 use Wm\Import\Api\ImporterInterface;
@@ -42,7 +41,9 @@ use Wm\Import\Api\ImporterInterface;
  */
 class CustomerImport extends Command
 {
-    private const COMMAND_CUSTOMER_IMPORT = 'customer:import';
+    private const CONSOLE_COMMAND = 'customer:import';
+    private const PARAM_PROFILE = 'profile-name';
+    private const PARAM_SOURCE = 'source';
 
     /**
      * Directory List
@@ -64,13 +65,6 @@ class CustomerImport extends Command
      * @var ReadFactory
      */
     protected $directoryReadFactory;
-
-    /**
-     * StoreManager Interface
-     *
-     * @var StoreManagerInterface
-     */
-    protected $storeManager;
 
     /**
      * Console Output
@@ -103,20 +97,18 @@ class CustomerImport extends Command
     /**
      * Console command for import customers
      *
-     * @param DirectoryList         $dir                  Parameter
-     * @param File                  $file                 Parameter
-     * @param ReadFactory           $directoryReadFactory Parameter
-     * @param StoreManagerInterface $storeManager         Parameter
-     * @param ImporterInterface     $importer             Parameter
-     * @param ConsoleOutput         $consoleOutput        Parameter
-     * @param IoFile                $ioFile               Parameter
-     * @param array                 $allowedExtensions    Parameter
+     * @param DirectoryList     $dir                  Parameter
+     * @param File              $file                 Parameter
+     * @param ReadFactory       $directoryReadFactory Parameter
+     * @param ImporterInterface $importer             Parameter
+     * @param ConsoleOutput     $consoleOutput        Parameter
+     * @param IoFile            $ioFile               Parameter
+     * @param array             $allowedExtensions    Parameter
      */
     public function __construct(
         DirectoryList $dir,
         File $file,
         ReadFactory $directoryReadFactory,
-        StoreManagerInterface $storeManager,
         ImporterInterface $importer,
         ConsoleOutput $consoleOutput,
         IoFile $ioFile,
@@ -125,7 +117,6 @@ class CustomerImport extends Command
         $this->dir = $dir;
         $this->file = $file;
         $this->directoryReadFactory = $directoryReadFactory;
-        $this->storeManager = $storeManager;
         $this->importer = $importer;
         $this->consoleOutput = $consoleOutput;
         $this->ioFile = $ioFile;
@@ -140,18 +131,18 @@ class CustomerImport extends Command
      */
     protected function configure()
     {
-        $this->setName(self::COMMAND_CUSTOMER_IMPORT)
+        $this->setName(self::CONSOLE_COMMAND)
             ->setDescription('import customers from a sample CSV or JSON: "php magento run:cron <profile-name> <source>"') //phpcs:ignore
             ->setDefinition(
                 [
                     new InputArgument(
-                        'profile-name',
+                        self::PARAM_PROFILE,
                         InputArgument::REQUIRED,
-                        'File type',
+                        'File type (Profile)',
                         null
                     ),
                     new InputArgument(
-                        'source',
+                        self::PARAM_SOURCE,
                         InputArgument::REQUIRED,
                         'File Name',
                         null
@@ -161,7 +152,7 @@ class CustomerImport extends Command
             ->setHelp(
                 <<<EOT
 Steps to import a customer:
-1. add a csv / json file at magento root.
+1. add a json /csv file at magento root.
 2. rum command: bin/magento customer:import <profile-name> <source>
 eq: bin/magento customer:import sample-csv sample.csv
 
